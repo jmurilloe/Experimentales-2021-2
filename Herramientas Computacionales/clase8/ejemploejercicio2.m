@@ -7,7 +7,7 @@ i = 1;
 
 %alturamax = y(1);
 while y(i) >= 0 
-  i = i + 1
+  i = i + 1;
 end
 
 fprintf('El tiempo empleado es: %f seg \n',t(i))
