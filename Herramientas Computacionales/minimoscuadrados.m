@@ -19,3 +19,16 @@ sei = sum(e);
 incertidumbrea=sqrt((sei)/(N-2))*sqrt((N)/(((N)*(sxx))-((sx)*(sx))))
 incertidumbreb=sqrt((sei)/(N-2))*sqrt((sxx)/(((N)*(sxx))-((sx)*(sx))))
 r = (((N)*(sxy))-((sx)*(sy)))/(sqrt(((N)*(sxx))-((sx)*(sx)))*sqrt(((N)*(syy))-((sy)*(sy))))
+
+xx = 0:0.1:3;
+yy = a.*xx+b;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure(1); clf;
+plot(x,y,'b*',xx,yy,'-k')
+legend('Datos experimentales','Ajuste - MMC') 
+xlabel('log(R/R_{0})');ylabel('log(T[K])');
+title('Ajuste por minimos cuadrados')
+text (0.5, 6, strcat ('\fontsize{14}\leftarrow log(T) = (0.8299\pm0.0014) log(R/R_{0})+(5.6869\pm0.0030)'));
+print -djpeg -r100 grafica_MCpredeterminado.jpg
