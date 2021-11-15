@@ -34,13 +34,16 @@ yy = a.*xx+b;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure (1);clf;
 plot (VD,I_D,'b*') 
+xlabel('VD[V]');ylabel('I_{D}[A]');
+title('Relacion entre corriente y voltaje para un diodo a 22°C')
+legend('Datos experimentales','Location','northwest') 
 print -djpeg -r100 grafica_22c.jpg
 figure(2); clf;
 plot(x,y,'b*',xx,yy,'-k')
 legend('Datos experimentales','Ajuste - MMC','Location','northwest') 
-xlabel('x');ylabel('y');
-title('Ajuste por minimos cuadrados')
-%text (0.5, 6, strcat ('\fontsize{14}\leftarrow log(T) = (0.8299\pm0.0014) log(R/R_{0})+(5.6869\pm0.0030)'));
+xlabel('VD[V]');ylabel('I_{D}[A]');
+title('Recta de carga para un diodo a 22°C')
+text (0.675, 0.002, strcat ('\fontsize{11}\leftarrow I = (0.070\pm0.002)I-(0.044\pm0.001)'));
 print -djpeg -r100 grafica_ajustepend22c.jpg
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,4 +53,7 @@ yy2 = a.*xx2+b;
 
 figure(3); clf;
 plot(VD,I_D,'b*',xx2,yy2,'-r')
+xlabel('VD[V]');ylabel('I_{D}[A]');
+title('Relacion entre corriente y voltaje para un diodo a 22°C y recta de carga')
+legend('Datos experimentales','Ajuste - MMC','Location','northwest') 
 print -djpeg -r100 grafica_22conajuste.jpg
