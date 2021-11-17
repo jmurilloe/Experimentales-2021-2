@@ -31,6 +31,11 @@ r = (((N)*(sxy))-((sx)*(sy)))/(sqrt(((N)*(sxx))-((sx)*(sx)))*sqrt(((N)*(syy))-((
 xx = 0.66:0.01:0.8;
 yy = a.*xx+b;
 
+Rd = 1/a
+deltaRd = (Rd^2)*incertidumbrea
+Vu = -b/a
+deltaVu = -Vu*sqrt((incertidumbrea/a)^2+(incertidumbreb/b)^2)
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure (1);clf;
 plot (VD,I_D,'b*') 
