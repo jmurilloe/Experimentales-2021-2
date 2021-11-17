@@ -34,7 +34,7 @@ yy = a.*xx+b;
 Rd = 1/a
 deltaRd = (Rd^2)*incertidumbrea
 Vu = -b/a
-deltaVu = -Vu*sqrt((incertidumbrea/a)^2+(incertidumbreb/b)^2)
+deltaVu = Vu*sqrt((incertidumbrea/a)^2+(incertidumbreb/b)^2)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure (1);clf;
