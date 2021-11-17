@@ -9,7 +9,7 @@ for n = x0:size(VD,2)
   y(i) = I_D(n);
   i+=1;
 end
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Minimos Cuadrados%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 size(x)
 size(y)
 N = size(x)(2)
@@ -28,15 +28,17 @@ incertidumbrea=sqrt((sei)/(N-2))*sqrt((N)/(((N)*(sxx))-((sx)*(sx))))
 incertidumbreb=sqrt((sei)/(N-2))*sqrt((sxx)/(((N)*(sxx))-((sx)*(sx))))
 r = (((N)*(sxy))-((sx)*(sy)))/(sqrt(((N)*(sxx))-((sx)*(sx)))*sqrt(((N)*(syy))-((sy)*(sy))))
 
-xx = 0.7:0.01:0.87;
-yy = a.*xx+b;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+xx = 0.7:0.01:0.87; 
+yy = a.*xx+b; %vectores para graficar la recta resultante del ajuste
 
 Rd = 1/a
 deltaRd = (Rd^2)*incertidumbrea
 Vu = -b/a
-deltaVu = Vu*sqrt((incertidumbrea/a)^2+(incertidumbreb/b)^2)
+deltaVu = Vu*sqrt((incertidumbrea/a)^2+(incertidumbreb/b)^2) %calculo de la resistencia dinamica y del voltaje umbral para el diodo, con sus respectivas incertidumbres obtenidas de derivadas parciales
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%Graficas%%%%%%%%%%%%%%%%%%%%%%%%%
 figure (1);clf;
 plot (VD,I_D,'b*') 
 xlabel('VD[V]');ylabel('I_{D}[A]');
@@ -54,7 +56,7 @@ print -djpeg -r100 grafica_ajustepend0c.jpg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 corte = (-b)/(a);
 xx2 = corte:0.01:0.87;
-yy2 = a.*xx2+b;
+yy2 = a.*xx2+b; %vectores para graficar la recta del ajuste, para evidenciar el corte con el eje I=0 en la grafica inicial (1) 
 
 figure(3); clf;
 plot(VD,I_D,'b*',xx2,yy2,'-r')
