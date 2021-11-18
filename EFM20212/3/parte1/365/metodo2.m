@@ -4,7 +4,7 @@ I  = [94.9	94.5	93	91	90.2	87	86.8	85.5	84.3	83.7	82.9	82	80.9	79.4	78.9	76.6	75
 
 volmax = -1.72; %%%%%%%%%%%%%%%%%%%% se selecciona el valor de voltaje hasta el que se considera, inicialmente, que esta el 0
 N=find(Vr == volmax);
-n = 0; sum = 0; x(1) = 0; y(1) = 0;
+n = 0; x(1) = 0; y(1) = 0;
 for n = N:size(Vr,2)
   x(n-(N-1)) = Vr(n);
   y(n-(N-1)) = I(n);
@@ -20,18 +20,17 @@ yyinf = (prom-3*destan)*ones(1,5);
 
 volmin = -0.65; %%%%%%%%%%%%%%%%%%%% se selecciona el valor de voltaje desde el que se considera, inicialmente, que la pendiente es constante y != 0
 in=find(Vr == volmin);
-x2 = Vr(1:in)
-y2 = I(1:in)
+x2 = Vr(3:in);
+y2 = I(3:in);
 
 size(x2)
 size(y2)
 Nin = size(x2)(2)
 
-%format long
-x2.*y2
-sxy2 = sum(x2.*y2)
-sxx2 = sum(x2.*x2);
-syy2 = sum(y2.*y2);
+format long
+sx2y2 = sum(x2.*y2);
+sx2x2 = sum(x2.*x2);
+sy2y2 = sum(y2.*y2);
 sx2 = sum(x2);
 sy2 = sum(y2);
 a = (((Nin)*(sx2y2))-((sx2)*(sy2)))/(((Nin)*(sx2x2))-((sx2)*(sx2)))
@@ -50,17 +49,17 @@ r = (((Nin)*(sx2y2))-((sx2)*(sy2)))/(sqrt(((Nin)*(sx2x2))-((sx2)*(sx2)))*sqrt(((
 %yf3= -1.2:0.1:1;
 figure(1);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%subplot(2,2,1:2)
+subplot(2,2,1:2)
 plot (Vr,I,'r.');grid on;
 xlabel('V_{r}[V]');ylabel('I[A]');
 legend('Datos Experimentales','Location','northwest')
 title('Relacion de I en funcion de V_{r}')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%subplot(2,2,3:4)
-%plot (x,y,'c.');grid on;
-%axis([-4 0 -20 100])
-%xlabel('V_{r}[V]');ylabel('I[A]');
-%legend('Datos Experimentales')
+subplot(2,2,3:4)
+plot (x2,y2,'c.');grid on;
+axis([-4 0 -20 100])
+xlabel('V_{r}[V]');ylabel('I[A]');
+legend('Datos Experimentales','Location','northwest')
 %title('Primera consideracion de puntos como I=0')
 
 figure(2);clf;
