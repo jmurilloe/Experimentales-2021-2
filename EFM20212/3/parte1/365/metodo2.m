@@ -18,10 +18,10 @@ yysup = Isup*ones(1,5);
 yyprom = Iprom*ones(1,5);
 yyinf = Iinf*ones(1,5);
 
-volmin = -0.65; %%%%%%%%%%%%%%%%%%%% se selecciona el valor de voltaje desde el que se considera, inicialmente, que la pendiente es constante y != 0
+volmin = -0.65; %%%%%%%%%%%%%%%%%%%% <------------SELECCIONAR el valor de voltaje desde el que se considera, inicialmente, que la pendiente es constante y != 0
 in=find(Vr == volmin); x2 = Vr(3:in); y2 = I(3:in);
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Minimos Cuadrados %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Minimos Cuadrados %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 size(x2)
 size(y2)
 Nin = size(x2)(2)
@@ -34,7 +34,7 @@ iNincertidumbrea=sqrt((sei)/(Nin-2))*sqrt((Nin)/(((Nin)*(sx2x2))-((sx2)*(sx2))))
 iNincertidumbreb=sqrt((sei)/(Nin-2))*sqrt((sx2x2)/(((Nin)*(sx2x2))-((sx2)*(sx2))))
 r = (((Nin)*(sx2y2))-((sx2)*(sy2)))/(sqrt(((Nin)*(sx2x2))-((sx2)*(sx2)))*sqrt(((Nin)*(sy2y2))-((sy2)*(sy2))))
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Calculo de puntos de corte %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Voinf = (Isup-b)/(a);Vo = (Iprom-b)/(a);Vosup = (Iinf-b)/(a);
 yf1= -1.2:0.01:Isup;
 xf1= Voinf*ones(1,length(yf1));
@@ -55,10 +55,11 @@ subplot(2,1,2); plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid
 
 figure(3); clf;
 plot(xx2,yy2,'k-',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-',xf1,yf1,'g',xf2,yf2,'c',xf3,yf3,'g');grid on; axis([-1.12 -1.09 -1.2 0]);xlabel('Corriente de electrones, I[u.a]');ylabel('Potencial de retardo, V[V]'); title('Curva I vs V caracteristica'); legend('Ajuste MMC','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','V_{0-inf}','V_{0}','V_{0-sup}','Location','northwest')
-%print -djpeg -r100 grafica_0conajuste.jpg
+%%%%%%%%%%%%% Informacion final de interes
 Iinf
 Iprom
 Isup
 Voinf
-Vo
 Vosup
+Vo
+deltaVo1 = Vo-Vosup

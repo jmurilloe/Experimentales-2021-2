@@ -6,8 +6,6 @@ I  = [94.9	94.5	93	91	90.2	87	86.8	85.5	84.3	83.7	82.9	82	80.9	79.4	78.9	76.6	75
 for i = 1:(length(I)-3)
   didv(i) = (I(i+3)-I(i))/(Vr(i+3)-Vr(i));
 end
-didv
-
 Vrdidv=Vr(1:length(didv));
 volmax = -1.65; %%%%%%%%%%%%%%%%%%%% <----------------SELECCIONAR el valor de voltaje hasta el que se considera, inicialmente, que didv esta en 0
 N=find(Vr == volmax);
@@ -23,7 +21,6 @@ subplot(4,1,3); plot(x0,y0,'m.'); axis([-4 0 -50 200]);grid on;xlabel('V_{r}[V]'
 subplot(4,1,4); plot(xn0,yn0,'c.'); axis([-4 0 -50 200]);grid on;xlabel('V_{r}[V]');ylabel('I[A]');legend('Datos Calculados','Location','northwest');title('Region considerada de pendiente diferente de 0')
 
 %%%%%%%%%%%%%%%%%%%%Minimos cuadrados para x0,y0
-didv
 size(x0)
 size(y0)
 N0 = size(x0)(2)
