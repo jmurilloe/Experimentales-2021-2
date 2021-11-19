@@ -3,83 +3,62 @@ Vr = [0	0	-0.02	-0.04	-0.04	-0.06	-0.07	-0.09	-0.09	-0.11	-0.11	-0.13	-0.14	-0.1
 I  = [94.9	94.5	93	91	90.2	87	86.8	85.5	84.3	83.7	82.9	82	80.9	79.4	78.9	76.6	75.6	74.1	72.9	71.9	71.3	70.5	69.5	68.9	68.6	68.1	67.2	66.6	65.3	64.9	64.3	63.3	62.5	61.9	61.5	61.2	60.8	60.7	60.5	59.7	59.4	58.5	58.8	58.4	57.5	56.2	56.2	55.6	55.1	54.2	52.8	52.8	53	52	51.7	51.4	50.4	49.8	49.2	48.5	47.9	47.6	46.9	46	46	45.3	44.8	44	43.6	43	42.5	41.3	41.3	40.4	39.9	38.9	38.1	38.1	37.4	37	36.8	35.5	34.9	34.6	34.2	33.7	33.1	33.5	32	30.9	30.4	30.2	30.1	29.5	29	27.8	27.9	27.1	26.6	26	25.3	24.7	24	23.2	22.8	22.1	21.1	20.7	20.3	19.6	19.1	18.1	17.2	16.8	16.3	15.9	15.4	14.4	13.7	13.4	13.2	12.7	12.3	11.3	10.5	10.2	10.1	10.2	10.1	9.4	8.9	8.6	8.5	8.4	8.1	7.8	7.1	6.8	6.8	6.8	6.3	5.5	5.3	5	4.7	4.4	4.1	3.8	3.4	3.2	3.2	3	2.7	2.5	2.5	2.3	2.1	1.9	1.7	1.6	1.5	1.3	1.2	1.1	1	1	0.9	1	0.8	0.6	0.5	0.4	0.3	0.1	0	0	-0.1	-0.2	-0.3	-0.3	-0.3	-0.4	-0.4	-0.6	-0.4	-0.5	-0.5	-0.5	-0.6	-0.5	-0.6	-0.5	-0.5	-0.6	-0.4	-0.6	-0.6	-0.5	-0.6	-0.5	-0.6	-0.5	-0.6	-0.7	-0.6	-0.7	-0.6	-0.6	-0.7	-0.6	-0.6	-0.6	-0.6	-0.6	-0.4	-0.6	-0.5	-0.7	-0.6	-0.4	-0.3	-0.1	-0.5	-0.6	-0.7	-0.5	-0.7	-0.7	-0.8	-0.6	-0.5	-0.6	-0.7	-0.6	-0.5	-0.7	-0.6	-0.7	-0.6	-0.6	-0.6	-0.8	-0.6	-0.7	-0.7	-0.7	-0.7	-0.6	-0.8	-0.7	-0.7	-0.7	-0.6	-0.8	-0.6	-0.7	-0.6	-0.7	-0.7	-0.7	-0.7	-0.6	-0.8	-0.6	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.6	-0.7	-0.6	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.6	-0.7	-0.7	-0.8	-0.7	-0.7	-0.8	-0.7	-0.7	-0.8	-0.7	-0.7	-0.6	-0.7	-0.7	-0.8	-0.8	-0.7	-0.7	-0.6	-0.6	-0.6	-0.8	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.7	-0.6	-0.8	-0.7	-0.7	-0.5	-0.7	-0.7	-0.7	-0.6	-0.5	-0.6	-0.4	-0.3	-0.3	-0.3];
 
 volmax = -1.72; %%%%%%%%%%%%%%%%%%%% se selecciona el valor de voltaje hasta el que se considera, inicialmente, que esta el 0
-N=find(Vr == volmax);
-n = 0; x(1) = 0; y(1) = 0;
+N=find(Vr == volmax); n = 0; x(1) = 0; y(1) = 0;
 for n = N:size(Vr,2)
   x(n-(N-1)) = Vr(n);
   y(n-(N-1)) = I(n);
 end
 
 prom=mean(y)
-destan=std(y)
+destan=std(y) 
 size(y,2)
-xx = -4:1:0;
-yysup = (prom+3*destan)*ones(1,5);
-yyprom = (prom)*ones(1,5);
-yyinf = (prom-3*destan)*ones(1,5);
+
+xx = -4:1:0; Iinf =prom-3*destan; Iprom=prom; Isup= prom+3*destan; 
+yysup = Isup*ones(1,5);
+yyprom = Iprom*ones(1,5);
+yyinf = Iinf*ones(1,5);
 
 volmin = -0.65; %%%%%%%%%%%%%%%%%%%% se selecciona el valor de voltaje desde el que se considera, inicialmente, que la pendiente es constante y != 0
-in=find(Vr == volmin);
-x2 = Vr(3:in);
-y2 = I(3:in);
+in=find(Vr == volmin); x2 = Vr(3:in); y2 = I(3:in);
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Minimos Cuadrados %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 size(x2)
 size(y2)
 Nin = size(x2)(2)
-
 format long
-sx2y2 = sum(x2.*y2);
-sx2x2 = sum(x2.*x2);
-sy2y2 = sum(y2.*y2);
-sx2 = sum(x2);
-sy2 = sum(y2);
+sx2y2 = sum(x2.*y2); sx2x2 = sum(x2.*x2); sy2y2 = sum(y2.*y2); sx2 = sum(x2); sy2 = sum(y2);
 a = (((Nin)*(sx2y2))-((sx2)*(sy2)))/(((Nin)*(sx2x2))-((sx2)*(sx2)))
 b = (((sx2x2)*(sy2))-((sx2)*(sx2y2)))/(((Nin)*(sx2x2))-((sx2)*(sx2)))
-e = (y2-((a*x2)+b)).^2;
-sei = sum(e);
+e = (y2-((a*x2)+b)).^2; sei = sum(e);
 iNincertidumbrea=sqrt((sei)/(Nin-2))*sqrt((Nin)/(((Nin)*(sx2x2))-((sx2)*(sx2))))
 iNincertidumbreb=sqrt((sei)/(Nin-2))*sqrt((sx2x2)/(((Nin)*(sx2x2))-((sx2)*(sx2))))
 r = (((Nin)*(sx2y2))-((sx2)*(sy2)))/(sqrt(((Nin)*(sx2x2))-((sx2)*(sx2)))*sqrt(((Nin)*(sy2y2))-((sy2)*(sy2))))
 
-%xf1= -1.76*ones(1,23);
-%yf1= -1.2:0.1:1;
-%xf2= -1.74*ones(1,23);
-%yf2= -1.2:0.1:1;
-%xf3= -1.72*ones(1,23);
-%yf3= -1.2:0.1:1;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Voinf = (Isup-b)/(a);Vo = (Iprom-b)/(a);Vosup = (Iinf-b)/(a);
+yf1= -1.2:0.01:Isup;
+xf1= Voinf*ones(1,length(yf1));
+yf2= -1.2:0.01:Iprom;
+xf2= Vo*ones(1,length(yf2));
+yf3= -1.2:0.01:Iinf;
+xf3= Vosup*ones(1,length(yf3));
+xx2 = -1.2:0.01:1;
+yy2 = a.*xx2+b; %vectores para graficar la recta del ajuste, para evidenciar el corte con el eje I=0 en la grafica inicial (1) 
+
 figure(1);clf;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-subplot(2,2,1:2)
-plot (Vr,I,'r.');grid on;
-xlabel('V_{r}[V]');ylabel('I[A]');
-legend('Datos Experimentales','Location','northwest')
-title('Relacion de I en funcion de V_{r}')
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-subplot(2,2,3:4)
-plot (x2,y2,'c.');grid on;
-axis([-4 0 -20 100])
-xlabel('V_{r}[V]');ylabel('I[A]');
-legend('Datos Experimentales','Location','northwest')
-%title('Primera consideracion de puntos como I=0')
+subplot(2,2,1:2);plot (Vr,I,'r.');grid on;xlabel('V_{r}[V]');ylabel('I[A]');legend('Datos Experimentales','Location','northwest');title('Relacion de I en funcion de V_{r}')
+subplot(2,2,3:4);plot (x2,y2,'c.');grid on;axis([-4 0 -20 100]);xlabel('V_{r}[V]');ylabel('I[A]');legend('Datos Experimentales','Location','northwest'); title('Primera consideracion de region con pendiente constante')
 
 figure(2);clf;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-subplot(2,1,1)
-plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on;
-axis([-4 0 -20 100])
-title('A)')
-xlabel('V_{r}[V]');ylabel('I[A]');
-legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','Location','northwest')
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-subplot(2,1,2)
-plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on;
-title('B)')
-xlabel('V_{r}[V]');ylabel('I[A]');
-axis([-4 0 -1.4 0])
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%figure(3);clf;
-%plot (Vr,I,'r*',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-',xf1,yf1,'g',xf2,yf2,'k',xf3,yf3,'g');grid on;
-%title('C)')
-%axis([-1.885 -1.6 -1.2 1.1])
-%xlabel('V_{r}[V]');ylabel('I[A]');
-%legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','V_{o-sup}','V_{o}','V_{o-inf}','Location','northwest')
+subplot(2,1,1); plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on; axis([-4 0 -20 100]);title('A)');xlabel('V_{r}[V]');ylabel('I[A]');legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','Location','northwest')
+subplot(2,1,2); plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on; title('B)'); xlabel('V_{r}[V]');ylabel('I[A]');axis([-4 0 -1.4 0])
+
+figure(3); clf;
+plot(xx2,yy2,'k-',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-',xf1,yf1,'g',xf2,yf2,'c',xf3,yf3,'g');grid on; axis([-1.12 -1.09 -1.2 0]);xlabel('Corriente de electrones, I[u.a]');ylabel('Potencial de retardo, V[V]'); title('Curva I vs V caracteristica'); legend('Ajuste MMC','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','V_{0-inf}','V_{0}','V_{0-sup}','Location','northwest')
+%print -djpeg -r100 grafica_0conajuste.jpg
+Iinf
+Iprom
+Isup
+Voinf
+Vo
+Vosup
