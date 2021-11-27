@@ -1,7 +1,0 @@
-Resumen: 1.Cual es el problema 
-	 2.Que se obtuvo
-Escribir las referencias
-	dar creditos en datos, graficas , tablas etc.
-Tamaño de las graficas, lo suficientemente grandes para que se observe bien pero no tan grandes. 
-Ajuste de cifras significativas (al parecer la incertidumbre con dos cifras significativas)
-Discrepancia, distancia entre el valor que se obtuvo (valor experimental medio) y el valor esperado.
