@@ -1,0 +1,21 @@
+Para 365 nm 
+	Columna 1 V0 = -1.68\pm0.04
+	Columna 2 V0 = -1.64\pm0.06
+	Columna 3 V0 = -1.63\pm0.06
+Para 405 nm 
+	Columna 1 V0 = -1.33\pm0.03
+	Columna 2 V0 = -1.30\pm0.06
+	Columna 3 V0 = -1.36\pm0.06
+Para 436 nm 
+	Columna 1 V0 = -1.20\pm0.05
+	Columna 2 V0 = -1.26\pm0.03
+	Columna 3 V0 = -1.24\pm0.03
+Para 546 nm 
+	Columna 1 V0 = -0.74\pm0.02
+	Columna 2 V0 = -0.71\pm0.02
+	Columna 3 V0 = -0.73\pm0.02
+Para 578 nm 
+	Columna 1 V0 = -0.64\pm0.02
+	Columna 2 V0 = -0.63\pm0.03
+	Columna 3 V0 = -0.62\pm0.02
+			

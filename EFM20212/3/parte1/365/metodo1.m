@@ -13,9 +13,9 @@ prom=mean(y)
 destan=std(y)
 size(y,2)
 xx = -4:1:0;
-yysup = (prom+3*destan)*ones(1,5);
-yyprom = (prom)*ones(1,5);
-yyinf = (prom-3*destan)*ones(1,5);
+yysup = (prom+3*destan)*ones(1,5)
+yyprom = (prom)*ones(1,5)
+yyinf = (prom-3*destan)*ones(1,5)
 Vosup=-1.76; %%%%%%%%%%%%%%%%%%%% <-------------
 Voinf=-1.72; %%%%%%%%%%%%%%%%%%%% <-------------SELECCIONAR el rango para el cual se considera que esta el primer voltaje fuera de la region 0
 Vo=(Vosup+Voinf)/2
@@ -30,16 +30,17 @@ figure(1);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,2,1:2)
 plot (Vr,I,'r.');grid on;
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('V_{r}[V]');ylabel('I[pA]');
 legend('Datos Experimentales','Location','northwest')
 title('Relacion de I en funcion de V_{r}')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,2,3:4)
 plot (x,y,'c.');grid on;
 axis([-4 0 -20 100])
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('V_{r}[V]');ylabel('I[pA]');
 legend('Datos Experimentales')
-title('Primera consideracion de puntos como I=0')
+%title('Primera consideracion de puntos como I=0')
+print -djpeg -r100 metodo1parte1caso365zonai0.jpg
 
 figure(2);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -47,18 +48,21 @@ subplot(2,1,1)
 plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on;
 axis([-4 0 -20 100])
 title('A)')
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('V_{r}[V]');ylabel('I[pA]');
 legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','Location','northwest')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,1,2)
 plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on;
 title('B)')
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('V_{r}[V]');ylabel('I[pA]');
 axis([-4 0 -1.4 0])
+print -djpeg -r100 metodo1parte1caso365zoomzonai0.jpg
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(3);clf;
 plot (Vr,I,'r*',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-',xf1,yf1,'g',xf2,yf2,'k',xf3,yf3,'g');grid on;
 title('C)')
 axis([-1.885 -1.6 -1.2 1.1])
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('V_{r}[V]');ylabel('I[pA]');
 legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','V_{o-sup}','V_{o}','V_{o-inf}','Location','northwest')
+print -djpeg -r100 metodo1parte1caso365zonav0.jpg
