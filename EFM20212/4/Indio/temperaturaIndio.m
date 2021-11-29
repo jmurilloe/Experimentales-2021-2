@@ -1,7 +1,7 @@
 clear all; close all;
-x = 1:0.01:100; 
+x = 1:0.001:20; 
 R = 8.31446261815324; T = 185; % constante de los gases ideales R y temperatura promedio
-c = 8.7532e-04; % <---------- SELECCIONAR calor especifico molar 
+c = 11.540; % <---------- SELECCIONAR calor especifico molar 
 y =3*R*(x.^2).*((exp(x))./((exp(x)-1).^2)) - c;
 plot (x,y); plot (x,y); xlabel('T_{E}/T'); ylabel('Diferencia entre la curva de Einstein y C'); legend('Curva Teorica'); title('Diferencia entre la curva de Einstein y C para la muestra de In')
 print -djpeg -r100 temperaturamuestraindio.jpg
