@@ -51,13 +51,16 @@ yysup = 195:0.01:(a1*r2tmin+b1); xxsup = r2tmin*ones(1,length(yysup));
 figure(1);clf;
 subplot(3,1,1)
 plot (t,m,'k*')
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 subplot(3,1,2)
 plot (x,y,'r*'); axis([0 250 195 220])   %%%%%%% <----------- SELECCIONAR rangos que concuerden con la primer grafica subplot(3,1,1)
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 subplot(3,1,3)
 plot (x2,y2,'g*'); axis([0 250 195 220]) %%%%%%% <----------- SELECCIONAR rangos que concuerden con la primer grafica subplot(3,1,1)
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 
 figure(2);clf;
 hold on;
-plot(t,m,'k.',xx1,yy1,'m-','linewidth',3,xx2,yy2,'m--','linewidth',3,xx3,yy3,'m--','linewidth',3,xx4,yy4,'m-','linewidth',3)
-plot(xxinf,yyinf,'k',xxmed,yymed,'r',xxsup,yysup,'k')
+plot(t,m,'k.',xx2,yy2,'m--','linewidth',3,xx3,yy3,'m--','linewidth',3,xxinf,yyinf,'k',xxmed,yymed,'r',xxsup,yysup,'k',xx1,yy1,'m-','linewidth',3,xx4,yy4,'m-','linewidth',3)
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales','Extrapolacion recta temperatura ambiente','Extrapolacion recta temperatura = 77K','Tiempo en el que se introduce la muestra','T_{med}','Tiempo en el que la muestra alcanza el equilibrio termico')
 hold off;

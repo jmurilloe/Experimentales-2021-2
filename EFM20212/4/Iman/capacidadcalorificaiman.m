@@ -12,7 +12,7 @@ x2 = t(i:Ns); y2 = m(i:Ns);
 %%%%%%% Constantes fisicas 
 L = 199; m0elem = 29.5; deltam0 = 0.1; deltat = 293-77; deltadeltat = sqrt(2);
 mmolar1 = 58.93; mmolar2 = 55.845; mmolar3 = 58.693; mmolar4 = 157.25; mmolar5 = 162.50; % 1 = cobalto, 2 = hierro, 3 = niquel, 4 = gadolinio, 5 = disprosio 
-mmolar6 = 114.538 ; mmolar7 = 202.57; mmolar8 = 434.41; mmolar9 = 231.533; % 6 = permalloy hierro niquel 1 a 1, 7 = awaruite, 8 = Wairakite, 9 = cobalto
+mmolar6 = 114.538 ; mmolar7 = 202.57; mmolar8 = 434.41; mmolar9 = 231.533; % 6 = permalloy hierro niquel 1 a 1, 7 = awaruite, 8 = Wairakite, 9 = magnetite
 
 %%%%%%% se realiza ajuste por minimos cuadrados a ambas rectas
 N = size(x)(2)
@@ -69,13 +69,16 @@ yysup = 130:0.01:(a1*r2tmin+b1); xxsup = r2tmin*ones(1,length(yysup));
 figure(1);clf;
 subplot(3,1,1)
 plot (t,m,'k*')
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 subplot(3,1,2)
 plot (x,y,'r*'); axis([0 250 130 160])   %%%%%%% <----------- SELECCIONAR rangos que concuerden con la primer grafica subplot(3,1,1)
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 subplot(3,1,3)
 plot (x2,y2,'g*'); axis([0 250 130 160]) %%%%%%% <----------- SELECCIONAR rangos que concuerden con la primer grafica subplot(3,1,1)
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 
 figure(2);clf;
 hold on;
-plot(t,m,'k.',xx1,yy1,'m-','linewidth',3,xx2,yy2,'m--','linewidth',3,xx3,yy3,'m--','linewidth',3,xx4,yy4,'m-','linewidth',3)
-plot(xxinf,yyinf,'k',xxmed,yymed,'r',xxsup,yysup,'k')
+plot(t,m,'k.',xx2,yy2,'m--','linewidth',3,xx3,yy3,'m--','linewidth',3,xxinf,yyinf,'k',xxmed,yymed,'r',xxsup,yysup,'k',xx1,yy1,'m-','linewidth',3,xx4,yy4,'m-','linewidth',3)
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales','Extrapolacion recta temperatura ambiente','Extrapolacion recta temperatura = 77K','Tiempo en el que se introduce la muestra','T_{med}','Tiempo en el que la muestra alcanza el equilibrio termico')
 hold off;
