@@ -58,9 +58,12 @@ xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
 subplot(3,1,3)
 plot (x2,y2,'g*'); axis([0 250 195 220]) %%%%%%% <----------- SELECCIONAR rangos que concuerden con la primer grafica subplot(3,1,1)
 xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales')
+print -djpeg -r100 calormuestraplomo1.jpg
 
 figure(2);clf;
 hold on;
 plot(t,m,'k.',xx2,yy2,'m--','linewidth',3,xx3,yy3,'m--','linewidth',3,xxinf,yyinf,'k',xxmed,yymed,'r',xxsup,yysup,'k',xx1,yy1,'m-','linewidth',3,xx4,yy4,'m-','linewidth',3)
-xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales','Extrapolacion recta temperatura ambiente','Extrapolacion recta temperatura = 77K','Tiempo en el que se introduce la muestra','T_{med}','Tiempo en el que la muestra alcanza el equilibrio termico')
+xlabel('Tiempo (s)'); ylabel('Masa total, M(g)'); legend('Datos Experimentales','Extrapolacion recta superior','Extrapolacion recta inferior','T_{1}','T_{med}','T_{3}')
+title('Extrapolacion de rectas obtenidas de MC y \Delta{M} para muestra de Plomo')
 hold off;
+print -djpeg -r100 calormuestraplomo2.jpg

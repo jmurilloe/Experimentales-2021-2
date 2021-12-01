@@ -1,5 +1,5 @@
 clear all; close all;
-x = 0:0.001:20; 
+x = 1:0.001:20; 
 R = 8.31446261815324; T = 185; % constante de los gases ideales R y temperatura promedio
 c = 18.4; % <---------- SELECCIONAR calor especifico molar 
 y =3*R*(x.^2).*((exp(x))./((exp(x)-1).^2)) - c;
@@ -10,6 +10,7 @@ while (y(i)>0)
   mj0(i) = x(i);
   i = i+1;
 end
+
 x(i-1)
 y(i-1)
 x(i)
