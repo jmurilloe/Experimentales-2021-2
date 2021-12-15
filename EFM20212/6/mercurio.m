@@ -1,6 +1,7 @@
 clear all; close all;
-y1 = 27.0; y2 = 29.5; y3 = 33.0; y4 = 37.5; y5 = 39.5; deltay = 0.5;
-D = 131; d = 2e-6; m = 1; q = 2;
+format long
+y1 = 25.0; y2 = 27.0; y3 = 30.5; y4 = 34.5; y5 = 36.5; deltay = 0.5;
+D = 121; d = 2e-6; m = 1; q = 2;
 theta1 = atan(y1/D)
 deltatheta1 = deltay*(1/(D+y1))
 theta2 = atan(y2/D)
@@ -24,7 +25,7 @@ deltalambda5 = deltatheta5*(d/m)*cos(theta5)
 for i = 3:7
   x(i-2) = (1/q^2)-(1/i^2);
 end
-y = [1/lambda5 1/lambda4 1/lambda3 1/lambda2 1/lambda1];
+y = [1/lambda5 1/lambda4 1/lambda3 1/lambda2 1/lambda1]
 N = length(x); sxy = sum(x.*y); sxx = sum(x.*x); syy = sum(y.*y); sx = sum(x); sy = sum(y);
 a = (((N)*(sxy))-((sx)*(sy)))/(((N)*(sxx))-((sx)*(sx)))
 b = (((sxx)*(sy))-((sx)*(sxy)))/(((N)*(sxx))-((sx)*(sx)))
@@ -34,4 +35,4 @@ incertidumbreb=sqrt((sei)/(N-2))*sqrt((sxx)/(((N)*(sxx))-((sx)*(sx))))
 r = (((N)*(sxy))-((sx)*(sy)))/(sqrt(((N)*(sxx))-((sx)*(sx)))*sqrt(((N)*(syy))-((sy)*(sy))))
 xx = min(x):0.01:max(x); yy = a*xx+b;
 plot(x,y,'k*',xx,yy,'r-'); legend('Datos Experimentales','Ajuste lineal por MC', 'Location','southeast')
-xlabel('(1/2)^2-(1/p)^2');ylabel('1/\lambda[m^{-1}]');
+xlabel('(1/2)^2-(1/p)^2');ylabel('1/\lambda[x 10^{6} m^{-1}]'); title('Ajuste para tubo de descarga con Mercurio')

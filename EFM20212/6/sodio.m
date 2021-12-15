@@ -1,6 +1,6 @@
 clear all; close all;
-y1 = 11.0; y2 = 23.0; y3 = 38.5; deltay = 0.5;
-D = 61; d = 3.333333e-6; m1 = 1; m2 = 2; m3 = 3;
+y1 = 9.5; y2 = 19.5; y3 = 32.5; deltay = 0.5;
+D = 52; d = 3.333333e-6; m1 = 1; m2 = 2; m3 = 3;
 theta1 = atan(y1/D)
 deltatheta1 = deltay*(1/(D+y1))
 theta2 = atan(y2/D)
