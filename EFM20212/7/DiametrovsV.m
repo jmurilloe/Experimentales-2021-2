@@ -10,16 +10,16 @@ x = log(V); y = log(D1);
 j = log(V); k = log(D2); 
 
 %%%%%% ajustes para D1
-[N1,a1,deltaa1,b1,deltab1,r1] = MinimosCuadrados(V,D1) % escala normal
+[N1,a1,deltaa1,b1,deltab1,r1] = MinimosCuadrados(V,D1); % escala normal
 [N2,a2,deltaa2,b2,deltab2,r2] = MinimosCuadrados(x,y) % escala logaritmica
-[N3,a3,deltaa3,b3,deltab3,r3] = MinimosCuadrados(x,D1) % escala con escala logaritmica en V
-[N4,a4,deltaa4,b4,deltab4,r4] = MinimosCuadrados(V,y) % escala con escala logaritmica en D
+[N3,a3,deltaa3,b3,deltab3,r3] = MinimosCuadrados(x,D1); % escala con escala logaritmica en V
+[N4,a4,deltaa4,b4,deltab4,r4] = MinimosCuadrados(V,y); % escala con escala logaritmica en D
 
 %%%%%% ajustes para D1
-[N5,a5,deltaa5,b5,deltab5,r5] = MinimosCuadrados(V,D2) % escala normal
+[N5,a5,deltaa5,b5,deltab5,r5] = MinimosCuadrados(V,D2); % escala normal
 [N6,a6,deltaa6,b6,deltab6,r6] = MinimosCuadrados(j,k) % escala logaritmica
-[N7,a7,deltaa7,b7,deltab7,r7] = MinimosCuadrados(j,D2) % escala con escala logaritmica en V
-[N8,a8,deltaa8,b8,deltab8,r8] = MinimosCuadrados(V,k) % escala con escala logaritmica en D
+[N7,a7,deltaa7,b7,deltab7,r7] = MinimosCuadrados(j,D2); % escala con escala logaritmica en V
+[N8,a8,deltaa8,b8,deltab8,r8] = MinimosCuadrados(V,k); % escala con escala logaritmica en D
 
 %%%%% lineas para ajustes (Aqui ya se selecciono cual ajuste es mejor, comparando el coeficiente de Pearson)
 xx1=min(x):(max(x)-min(x))/10:max(x); yy1 = a2*xx1+b2;
@@ -27,10 +27,21 @@ xx2=min(j):(max(j)-min(j))/10:max(j); yy2 = a6*xx2+b6;
 
 %%%%% Figuras
 figure(1); clf;
-plot(V,D1,'k*')
+plot(V,D1,'k*'); xlabel('Voltaje, V [V]'); ylabel('Diametro del anillo 1, D_{1}[mm]'); legend('Datos Experimentales')
+title('Comportamiento del diametro del anillo 1 en funcion del voltaje aplicado')
+print -djpeg -r100 D1vsV.jpg
+
 figure(2); clf;
-plot(V,D2,'k*')
+plot(V,D2,'k*'); xlabel('Voltaje, V [V]'); ylabel('Diametro del anillo 2, D_{2}[mm]'); legend('Datos Experimentales')
+title('Comportamiento del diametro del anillo 2 en funcion del voltaje aplicado')
+print -djpeg -r100 D2vsV.jpg
+
 figure(3); clf;
-plot(x,y,'k*',xx1,yy1,'r-')
+plot(x,y,'k*',xx1,yy1,'r-'); xlabel('ln(V [V])'); ylabel('ln(D_{1}[mm])'); legend('Datos Experimentales','Ajuste lineal por minimos cuadrados')
+title('Ajuste del diametro del anillo 1 vs voltaje aplicado en escala logaritmica')
+print -djpeg -r100 ajusteD1vsV.jpg
+
 figure(4); clf;
-plot(j,k,'k*',xx2,yy2,'r-')
+plot(j,k,'k*',xx2,yy2,'r-'); xlabel('ln(V [V])'); ylabel('ln(D_{2}[mm])'); legend('Datos Experimentales','Ajuste lineal por minimos cuadrados')
+title('Ajuste del diametro del anillo 2 vs voltaje aplicado en escala logaritmica')
+print -djpeg -r100 ajusteD2vsV.jpg
