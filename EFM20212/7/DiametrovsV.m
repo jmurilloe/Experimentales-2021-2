@@ -9,51 +9,28 @@ V = [5	4.8	4.6	4.4	4.2	4	3.8	3.6	3.4	3.2	3	2.8	2.6];
 x = log(V); y = log(D1);
 j = log(V); k = log(D2); 
 
-%%%%%% Minimos cuadrados para anillo 1
-N = length(x); sxy = sum(x.*y); sxx = sum(x.*x);
-syy = sum(y.*y); sx = sum(x); sy = sum(y);
-a = (((N)*(sxy))-((sx)*(sy)))/(((N)*(sxx))-((sx)*(sx)))
-b = (((sxx)*(sy))-((sx)*(sxy)))/(((N)*(sxx))-((sx)*(sx)))
-e = (y-((a*x)+b)).^2; sei = sum(e);
-incertidumbrea=sqrt((sei)/(N-2))*sqrt((N)/(((N)*(sxx))-((sx)*(sx))))
-incertidumbreb=sqrt((sei)/(N-2))*sqrt((sxx)/(((N)*(sxx))-((sx)*(sx))))
-r = (((N)*(sxy))-((sx)*(sy)))/(sqrt(((N)*(sxx))-((sx)*(sx)))*sqrt(((N)*(syy))-((sy)*(sy))))
+%%%%%% ajustes para D1
+[N1,a1,deltaa1,b1,deltab1,r1] = MinimosCuadrados(V,D1) % escala normal
+[N2,a2,deltaa2,b2,deltab2,r2] = MinimosCuadrados(x,y) % escala logaritmica
+[N3,a3,deltaa3,b3,deltab3,r3] = MinimosCuadrados(x,D1) % escala con escala logaritmica en V
+[N4,a4,deltaa4,b4,deltab4,r4] = MinimosCuadrados(V,y) % escala con escala logaritmica en D
 
-%%%%%% Minimos cuadrados para anillo 2
-N2 = length(j); sjk = sum(j.*k); sjj = sum(j.*j);
-skk = sum(k.*k); sj = sum(j); sk = sum(k);
-a2 = (((N2)*(sjk))-((sj)*(sk)))/(((N2)*(sjj))-((sj)*(sj)))
-b2 = (((sjj)*(sk))-((sj)*(sjk)))/(((N2)*(sjj))-((sj)*(sj)))
-e2 = (k-((a2*j)+b2)).^2; sei2 = sum(e2);
-iN2certidumbrea=sqrt((sei2)/(N2-2))*sqrt((N2)/(((N2)*(sjj))-((sj)*(sj))))
-iN2certidumbreb=sqrt((sei2)/(N2-2))*sqrt((sjj)/(((N2)*(sjj))-((sj)*(sj))))
-r2 = (((N2)*(sjk))-((sj)*(sk)))/(sqrt(((N2)*(sjj))-((sj)*(sj)))*sqrt(((N2)*(skk))-((sk)*(sk))))
-%figure(1);clf;
-%%%%%%%%%%%%%%%%%%%%%%%%  
-%subplot(2,2,1)
-%plot(x,y,'*b');grid on;
-%xlabel('Temperatura(K)');ylabel('\lambda_{max}(\mum)');
-%title('A')
-%%%%% esto tiene que ir en la descripcion de la figura '\lambda_{max} vs temperatura para la radiacion de un cuerpo negro'
-%%%%%%%%%%%%%%%%%%%%%%%%
-%subplot(2,2,2)
-%semilogy(x,y,'*b');grid on;
-%xlabel('Temperatura(K)');ylabel('log(\lambda_{max}(\mum))');
-%title('B')
-%%%%%\ esto tiene que ir en la descripcion de la figura 'Con escala logaritmica para $\lambda_{max}$'
-%%%%%%%%%%%%%%%%%%%%%%%%
-%subplot(2,2,3)
-%semilogx(x,y,'*b');grid on;
-%xlabel('log(Temperatura(K))');ylabel('\lambda_{max}(\mum)');
-%title('C')
-%%%%% esto tiene que ir en la descripcion de la figura 'Con escala logaritmica para Temperatura'
-%%%%%%%%%%%%%%%%%%%%%%%%
-%subplot(2,2,4)
-%loglog(x,y,'*b');grid on;
-%xlabel('log(Temperatura(K))');ylabel('log(\lambda_{max}(\mum))');
-%title('D')
-%%%%% esto tiene que ir en la descripcion de la figura title('Con escala logaritmica en ambos ejes'
-%figure(1); clf;
-%plot(V,D1,'k*')
-%figure(2); clf;
-%plot(V,D2,'k*')
+%%%%%% ajustes para D1
+[N5,a5,deltaa5,b5,deltab5,r5] = MinimosCuadrados(V,D2) % escala normal
+[N6,a6,deltaa6,b6,deltab6,r6] = MinimosCuadrados(j,k) % escala logaritmica
+[N7,a7,deltaa7,b7,deltab7,r7] = MinimosCuadrados(j,D2) % escala con escala logaritmica en V
+[N8,a8,deltaa8,b8,deltab8,r8] = MinimosCuadrados(V,k) % escala con escala logaritmica en D
+
+%%%%% lineas para ajustes (Aqui ya se selecciono cual ajuste es mejor, comparando el coeficiente de Pearson)
+xx1=min(x):(max(x)-min(x))/10:max(x); yy1 = a2*xx1+b2;
+xx2=min(j):(max(j)-min(j))/10:max(j); yy2 = a6*xx2+b6;
+
+%%%%% Figuras
+figure(1); clf;
+plot(V,D1,'k*')
+figure(2); clf;
+plot(V,D2,'k*')
+figure(3); clf;
+plot(x,y,'k*',xx1,yy1,'r-')
+figure(4); clf;
+plot(j,k,'k*',xx2,yy2,'r-')
