@@ -31,14 +31,14 @@ figure(1);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,2,1:2)
 plot (Vr,I,'r.');grid on;
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('Angulo[°]');ylabel('Intensidad, I[1/s]');
 legend('Datos Experimentales','Location','northwest')
-title('Relacion de I en funcion de V_{r}')
+title('Relacion de Intensidad en funcion del angulo')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,2,3:4)
 plot (x,y,'c.');grid on;
 axis([min(Vr) max(Vr) min(I) max(I)])
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('Angulo[°]');ylabel('Intensidad [1/s]');
 legend('Datos Experimentales')
 title('Primera consideracion de puntos como I=0')
 
@@ -48,18 +48,18 @@ subplot(2,1,1)
 plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on;
 axis([min(Vr) max(Vr) min(I) max(I)])
 title('A)')
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('Angulo[°]');ylabel('Intensidad [1/s]');
 legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','Location','northwest')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 subplot(2,1,2)
 plot (Vr,I,'r.',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-');grid on;
 title('B)')
-xlabel('V_{r}[V]');ylabel('I[A]');
+xlabel('Angulo[°]');ylabel('Intensidad [1/s]');
 axis([min(Vr) max(Vr) min(I) 200])
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure(3);clf;
 plot (Vr,I,'r*',xx,yysup,'m-',xx,yyprom,'b-',xx,yyinf,'m-',xf1,yf1,'g',xf2,yf2,'k',xf3,yf3,'g');grid on;
 title('C)')
 axis([xinf xsup yinf ysup])
-xlabel('V_{r}[V]');ylabel('I[A]');
-legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','V_{o-sup}','V_{o}','V_{o-inf}','Location','southwest')
+xlabel('Angulo[°]');ylabel('Intensidad [1/s]');
+legend('Datos Experimentales','I_{prom}+3\sigma','I_{prom}','I_{prom}-3\sigma','\beta_{o-sup}','\beta_{o}','\beta_{o-inf}','Location','southwest')
