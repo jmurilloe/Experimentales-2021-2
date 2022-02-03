@@ -24,6 +24,11 @@ vce = [8.87 8.06 7.52 6.64 5.99 5.15 4.53 3.80 3.35 2.28 1.68 1.11 0.14];
 
 [N1,a1,incertidumbrea1,b1,incertidumbreb1,r1] = MinimosCuadrados(vce416(2:end),ic416(2:end))
 [N2,a2,incertidumbrea2,b2,incertidumbreb2,r2] = MinimosCuadrados(vce,ic)
+x = (b2-b1)/(a1-a2)
+deltax = sqrt((incertidumbreb2/(a1-a2))^2+(incertidumbreb1/(-a1+a2))^2+(incertidumbrea1*(-b2+b1)/(a1-a2)^2)^2+(incertidumbrea2*(b2-b1)/(a1-a2))^2)
+y = b1+a1*x
+deltay = sqrt((1*incertidumbreb1)^2+(x*incertidumbrea1)^2+(a1*deltax)^2)
+
 xx = 8.4:0.1:8.5; yy1 = a1.*xx+b1; yy2= a2.*xx+b2;
 
 figure(2);clf;
